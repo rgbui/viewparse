@@ -1,7 +1,12 @@
 
-declare module '*.less';
+declare module '*.css' {
+    const styles: any
+    export = styles
+}
 
-declare module "*.svg" {
-    const content: any;
-    export default content;
+type SvgrComponent = React.StatelessComponent<React.SVGAttributes<SVGElement>>
+
+declare module '*.svg' {
+    const content: SvgrComponent
+    export default content
 }

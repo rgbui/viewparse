@@ -1,5 +1,5 @@
 const path = require("path");
-const webpack = require('webpack')
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -12,7 +12,6 @@ var mode = process.argv.findIndex(x => x.indexOf('development') > -1) > -1 ? "de
 var reactCdnJS = mode == 'pro' ?
     `https://cdn.bootcdn.net/ajax/libs/react/0.0.0-0c756fb-f7f79fd/umd/react.production.min.js` :
     'https://cdn.bootcdn.net/ajax/libs/react/0.0.0-0c756fb-f7f79fd/umd/react.development.js';
-console.log(mode, reactCdnJS)
 module.exports = {
     mode: 'production',
     entry: "./app/index.tsx",
@@ -50,7 +49,7 @@ module.exports = {
                     //     publicPath: '../'
                     // },
                 },
-                'css-loader',
+                'css-loader', 'postcss-loader'
             ],
         },
         {
@@ -61,8 +60,12 @@ module.exports = {
                         loader: MiniCssExtractPlugin.loader,
 
                     },
-                    'css-loader', 'less-loader'
+                    'css-loader', 'postcss-loader', 'less-loader'
                 ],
+        },
+        {
+            test: /\.svg$/,
+            use: ['@svgr/webpack'],
         },
         {
             test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
