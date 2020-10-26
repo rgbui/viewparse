@@ -1,5 +1,6 @@
 
 import * as  React from "react";
-export function Reg() {
+export function Reg()
+{
     return <div></div>
 }
